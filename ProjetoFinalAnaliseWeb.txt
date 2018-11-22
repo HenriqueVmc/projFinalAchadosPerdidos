@@ -1,0 +1,40 @@
+Sistema de achados e perdidos
+O que?
+    Um sistema para divulgação de achados e perdidos do ifsc
+Por que?
+    Pois boa parte dos estudantes não moram na região
+    e portanto quando perdem seus pertences, precisam ir
+    até a instituição para encontrarem. Com um sistema web,
+    seria possivel consultar os objetos perdidos de qualquer
+    lugar e em qualquer momento.
+Como?
+    Por meio de uma plataforma web
+
+Entidades
+    Objetos;
+        nome;
+        cor;
+        tipo de objetos;
+        descricao
+        situacao;(achado/perdido/devolvido)
+
+    Usuários;
+        nome;
+        login;
+        senha;
+        contato;
+        endereço;                        
+        perfilId;
+        permissaoId;
+
+    Postagens;
+        titulo;
+        descricao;
+        imagem;                
+        usuario;
+        dtPublicacao
+        Objetos;
+        Local;
+        reconpensa
+
+
