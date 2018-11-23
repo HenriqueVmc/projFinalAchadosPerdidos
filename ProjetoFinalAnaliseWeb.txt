@@ -39,31 +39,50 @@ Entidades
         
         
 Requisitos funcionais:
-    O sistema deve permitir o auto-cadastro por usuários
-    O sistema deve permitir o cadastro de objetos(achados/perdidos)
-    O sistema deve permitir a publicação de um post com detalhes do objeto
-    O sistema deve permitir consultar os objetos publicados por usuários cadastrados
-    O sistema deve disponibilizar diversos filtros para busca de objetos publicados    
-    O sistema deve permitir um chat privado entre usuários
-    O sistema deve permitir consultar informações do perfil do usuário
-    O sistema deve permitir alterar de informações do perfil do usuário
-    O sistema deve permitir consultar posts publicados pelo usuário
-    O sistema deve permitir alterar posts publicados pelo usuário.
+    RF01: O sistema deve permitir o auto-cadastro por usuários;
+	    Descreve o processo de auo-cadastro do usuário ao criar uma nova conta para acesso ao sistema.
+        
+    RF02: O sistema deve permitir o cadastro de objetos(achados/perdidos);
+        Descreve processo de cadastramento de objeto achado/perdido por usuário logado.
+        
+    RF03: O sistema deve permitir a publicação de um post com detalhes do objeto;
+        Descreve processo de criar novo post para publicação de objeto achado/perdido pelo usuário logado.
+        
+    RF04: O sistema deve permitir consultar os objetos publicados por usuários cadastrados
+        Descreve o processo de consultar posts publicados de objetos achados/perdidos pelos usuários.
+        
+    RF05: O sistema deve disponibilizar diversos filtros para busca de objetos publicados;
+        Descreve o processo de aplicação de filtros para busca posts de objetos publicados por usuários.
+        
+    RF06: O sistema deve permitir um chat privado entre usuários;
+        Descreve processo de chat privado entre usuários cadastrados.
+
+    RF07: O sistema deve permitir consultar informações do perfil do usuário;
+        Descreve o processo do usuário logado consultar seus dados cadastrais.
+    
+    RF08: O sistema deve permitir alterar de informações do perfil do usuário;
+        Descreve o processo do usuário logado alterar seus dados cadastrais.
+        
+    RF09: O sistema deve permitir consultar posts publicados pelo usuário;
+        Descreve o processo do usuário logado consultar suas publicações.
+        
+    RF10: O sistema deve permitir alterar posts publicados pelo usuário;
+        Descreve processo do usuário alterar as informações de suas publicações.
 
 Requisitos não funcionais:
-    O sistema deve zelar pela usabilidade e acessibilidade
-    O sistema deve ter bom desempenho ao responder requisições
-    O sistema deve zelar pela segurança das informações
-    O sistema deve ser responsivo
+    RNF01: O sistema deve zelar pela usabilidade e acessibilidade
+    RNF02: O sistema deve ter bom desempenho ao responder requisições
+    RNF03: O sistema deve zelar pela segurança das informações
+    RNF04: O sistema deve ser responsivo
 
 Regras de Negócio:        
-    O sistema deve notificar e solicitar a situação do objeto caso o post ultrapasse 1 mês de publicação.
-    O sistema deve remover automaticamente posts que ultrapasarem 2 meses de publicação.
-    O sistema deve remover os posts atualizados com situação Encontrado/Devolvido.
-    O sistema deve permitir a consulta por publicações por usuários não cadastrados    
-    O sistema não deve permitir o cadastro de objetos por usuários não cadastrados
-    O sistema não deve permitir a publicação de posts por usuários não cadastrados
-    O sistema não deve permitir o chat privado por usuários não cadastrados
+    REG01: O sistema deve notificar e solicitar a situação do objeto caso o post ultrapasse 1 mês de publicação.
+    REG02: O sistema deve remover automaticamente posts que ultrapasarem 2 meses de publicação.
+    REG03: O sistema deve remover os posts atualizados com situação Encontrado/Devolvido.
+    REG04: O sistema deve permitir a consulta por publicações por usuários não cadastrados    
+    REG05: O sistema não deve permitir o cadastro de objetos por usuários não cadastrados
+    REG06: O sistema não deve permitir a publicação de posts por usuários não cadastrados
+    REG07: O sistema não deve permitir o chat privado por usuários não cadastrados
     
 
 Correlatos:
