@@ -29,6 +29,7 @@ class Publicaco extends Entity
         'titulo' => true,
         'imagem' => true,
         'dtPublicacao' => true,
+        'descricao' => true,
         'usuarioId' => true,
         'objetoId' => true
     ];

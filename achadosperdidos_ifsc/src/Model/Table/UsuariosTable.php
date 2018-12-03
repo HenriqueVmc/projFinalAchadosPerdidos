@@ -36,7 +36,9 @@ class UsuariosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Publicacoes', array(
-            'foreignKey'=> "publicacaoId"
+            'foreignKey'=> "publicacaoId",
+            'dependent'=> true, 
+            'cascadeCallbacks'=> true
         ));
 
         $this->belongsTo('Perfis', array(

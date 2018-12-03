@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Http\Session\DatabaseSession;
 
 /**
  * Usuarios Controller
@@ -13,12 +14,12 @@ use Cake\ORM\TableRegistry;
  */
 class UsuariosController extends AppController
 {
-
     /**
      * Index method
      *
      * @return \Cake\Http\Response|void
      */
+
     public function index()
     {        
         $listaUsuarios = $this->Usuarios->buscarListaUsuarios();
@@ -26,6 +27,38 @@ class UsuariosController extends AppController
         $this->set(compact('listaUsuarios'));
         $this->set('_serialize', ['listaUsuarios']);
         $this->paginate($this->Usuarios);
+    }
+
+    public function entrar()
+    {        
+        $usuario = $this->Usuarios->newEntity();
+        $usuario->nome = " ";
+        $usuario->email = " ";
+        $usuario->celular = " ";
+        $usuario->perfilId = " ";
+
+        if ($this->request->is('post')) {
+            
+            $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());            
+            $encontrado = $this->Usuarios->find()->where(['Usuarios.login' => $usuario->login, 'Usuarios.senha' => $usuario->senha])->toArray();           
+            
+            if(!empty($encontrado)){
+              
+                //$session = $this->getRequest()->getSession();                
+                //$Session->write('nome', $encontrado->nome);
+                //$session->write('usuarioId', $encontrado->id);
+                //$Session->write('perfilId', $encontrado->perfilId);
+
+                //session_start();                
+                //$_SESSION['usuarioId'] = $encontrado->id;
+
+                return $this->redirect(['controller' => 'publicacoes', 'action' => 'index']);
+
+            }else{
+                return $this->redirect(['action' => 'entrar']);
+            }
+        }    
+        $this->set('usuario', $usuario);
     }
 
     /**
@@ -112,5 +145,14 @@ class UsuariosController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function beforeFilter(\Cake\Event\Event $event)
+    {
+        parent::beforeFilter($event);
+    
+        if ($this->request->param('action') === 'actionXyz') {
+            $this->eventManager()->off($this->Csrf);
+        }
     }
 }

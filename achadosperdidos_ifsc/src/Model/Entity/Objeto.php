@@ -31,7 +31,6 @@ class Objeto extends Entity
     protected $_accessible = [
         'nome' => true,
         'cor' => true,
-        'descricao' => true,
         'situacao' => true,
         'dtSituacao' => true,
         'localSituacao' => true,

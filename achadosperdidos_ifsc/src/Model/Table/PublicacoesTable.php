@@ -36,11 +36,15 @@ class PublicacoesTable extends Table
         $this->setPrimaryKey('id');
         
         $this->belongsTo('Usuarios', array(
-            'foreignKey'=> "usuarioId"
+            'foreignKey'=> "usuarioId",
+            'dependent'=> true, 
+            'cascadeCallbacks'=> true
         ));
         
         $this->belongsTo('Objetos', array(
-            'foreignKey'=> "objetoId"
+            'foreignKey'=> "objetoId",
+            'dependent'=> true, 
+            'cascadeCallbacks'=> true
         ));
     }
 

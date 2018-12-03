@@ -36,7 +36,9 @@ class ObjetosTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasOne('Publicacoes', array(
-            'foreignKey'=> "objetoId"
+            'foreignKey'=> "objetoId",
+            'dependent'=> true, 
+            'cascadeCallbacks'=> true
         ));
     }
 

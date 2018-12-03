@@ -3,8 +3,6 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-use Cake\Filesystem\Folder;
-use Cake\Filesystem\File;
 
 /**
  * Publicacoes Controller
@@ -15,7 +13,12 @@ use Cake\Filesystem\File;
  */
 class PublicacoesController extends AppController
 {
-
+    public function initialize(){
+        parent::initialize();
+        
+        // Include the FlashComponent
+        $this->loadComponent('Flash');
+    }
     /**
      * Index method
      *
@@ -49,13 +52,29 @@ class PublicacoesController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($objetoId = null)
     {
         $publicaco = $this->Publicacoes->newEntity();
+        $publicaco->objetoId = $objetoId;        
+
         if ($this->request->is('post')) {
-            $publicaco = $this->Publicacoes->patchEntity($publicaco, $this->request->getData());
-            $publicaco->imagem = '/webroot/img/'.$publicaco->imagem;
-            //new File('/webroot/img/'.$publicaco->imagem, true);
+            
+            $file = $this->request->getData('imagem');
+            $publicaco = $this->Publicacoes->patchEntity($publicaco, $this->request->getData()); 
+            $publicaco->usuarioId = 1;
+            $publicaco->dtPublicacao = date("Y-m-d");
+            
+            if(!empty($this->request->data['imagem']['name'])){
+                $fileName = $this->request->data['imagem']['name'];
+                $uploadPath = "webroot/img/";           
+                $uploadFile = $uploadPath.$fileName;
+                if(move_uploaded_file($this->request->data['imagem']['tmp_name'],'/xampp/htdocs/projFinalAchadosPerdidos/achadosperdidos_ifsc/'.$uploadFile)){
+                    $publicaco->imagem = $uploadFile;                    
+                }else{
+                    $this->Flash->error(__('Unable to upload file, please try again.'));
+                }
+            }
+
             if ($this->Publicacoes->save($publicaco)) {
                 $this->Flash->success(__('The publicaco has been saved.'));
 
@@ -63,16 +82,16 @@ class PublicacoesController extends AppController
             }
             $this->Flash->error(__('The publicaco could not be saved. Please, try again.'));
         }
-        $UsuariosTable = TableRegistry::get("Usuarios");
-        $listaUsuarios = $UsuariosTable->selectUsuarios();
+        // $UsuariosTable = TableRegistry::get("Usuarios");
+        // $listaUsuarios = $UsuariosTable->selectUsuarios();
 
-        $ObjetosTable = TableRegistry::get("Objetos");
-        $listaObjetos = $ObjetosTable->selectObjetos();
+        // $ObjetosTable = TableRegistry::get("Objetos");
+        // $listaObjetos = $ObjetosTable->selectObjetos();
 
-        $this->set(compact('listaObjetos'));
-        $this->set('_serialize', ['listaObjetos']);
-        $this->set(compact('listaUsuarios'));
-        $this->set('_serialize', ['listaUsuarios']);
+        // $this->set(compact('listaObjetos'));
+        // $this->set('_serialize', ['listaObjetos']);
+        // $this->set(compact('listaUsuarios'));
+        // $this->set('_serialize', ['listaUsuarios']);
         $this->set(compact('publicaco'));
     }
 

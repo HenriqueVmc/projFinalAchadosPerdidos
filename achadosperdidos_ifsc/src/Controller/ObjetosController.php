@@ -55,10 +55,11 @@ class ObjetosController extends AppController
         $objeto = $this->Objetos->newEntity();
         if ($this->request->is('post')) {
             $objeto = $this->Objetos->patchEntity($objeto, $this->request->getData());
-            if ($this->Objetos->save($objeto)) {
+            $result = $this->Objetos->save($objeto);
+            if ($result) {
                 $this->Flash->success(__('The objeto has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Publicacoes', 'action' => 'add?objetoid='.$result->id]);
             }
             $this->Flash->error(__('The objeto could not be saved. Please, try again.'));
         }
